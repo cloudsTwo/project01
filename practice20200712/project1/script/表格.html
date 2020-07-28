@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格</title>
+</head>
+<script>
+    // 新增行无法计入行数问题
+    window.onload = function () {
+        var oTab = document.getElementById('tab1');
+        var oBt = document.getElementById('bt1');
+        var name = document.getElementById('name');
+        var sex = document.getElementById('sex');
+        var num = oTab.tBodies[0].rows.length;
+        var del = oTab.getElementsByTagName('a');
+        var oSear = document.getElementById('search');
+        var oSearBt = document.getElementById('searchBt');
+        var oSortBt = document.getElementById('sortBt');
+        changeColor();
+
+        // 无反应？
+        oSortBt.onclick = function() {
+          var arr = [];
+
+          for(var i = 0; i < oTab.tBodies[0].rows.length; i ++){
+              arr[i] == oTab.tBodies[0].rows[i];
+          }
+
+          arr.sort(function (tr1, tr2) {
+              alert('to');
+              var n1 = parseInt(tr1.cells[0].innerHTML);
+              var n2 = parseInt(tr2.cells[0].innerHTML);
+              return n1 - n2;
+          });
+
+          for(var i = 0; i < arr.length; i ++){
+              oTab.tBodies[0].appendChild(arr[i]);
+          }
+        };
+
+        oSearBt.onclick = function(){
+            // 无法在查找结束后恢复原来背景色
+            for(var i = 0; i < oTab.tBodies[0].rows.length; i ++){
+
+                // var arr = oSear.value.toLowerCase().split(' ');
+
+                if ( oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase().search(oSear.value.toLowerCase()) != -1){
+
+                    oTab.tBodies[0].rows[i].style.display = 'block';
+                }else{
+                    oTab.tBodies[0].rows[i].style.display = 'none';
+                }
+
+
+            }
+
+        };
+
+        oBt.onclick = function () {
+            var oTr = document.createElement('tr');
+            num += 1;
+
+            var oTd = document.createElement('td');
+            oTd.innerHTML = num;
+            oTr.appendChild(oTd);
+
+            var oTd = document.createElement('td');
+            oTd.innerHTML = name.value;
+            oTr.appendChild(oTd);
+
+            var oTd = document.createElement('td');
+            oTd.innerHTML = sex.value;
+            oTr.appendChild(oTd);
+
+            var oTd = document.createElement('td');
+            oTd.innerHTML = '<a href="javascript:">删除</a>';
+            oTr.appendChild(oTd);
+
+            oTd.getElementsByTagName('a')[0].onclick = function(){
+                oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+            };
+
+            oTab.tBodies[0].appendChild(oTr);
+
+            changeColor();
+        };
+
+        for (var i = 0; i < del.length; i ++){
+            del[i].onclick = function () {
+                oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+            }
+        }
+
+        function changeColor() {
+
+            for(var i = 0; i < oTab.tBodies[0].rows.length ; i ++){
+                var oldColor;
+
+                oTab.tBodies[0].rows[i].onmouseover = function () {
+                    oldColor = this.style.backgroundColor;
+
+                    this.style.backgroundColor = "green";
+                }
+
+                oTab.tBodies[0].rows[i].onmouseout = function () {
+                    this.style.backgroundColor = oldColor;
+                }
+
+                if(i % 2){
+
+                }else{
+                    oTab.tBodies[0].rows[i].style.backgroundColor = "grey";
+                }
+            }
+        }
+
+    }
+</script>
+<body>
+    姓名<input type="text" id="name" >
+    性别<input type="text" id="sex" >
+    <input type="button" id="bt1" value="添加">
+
+    <br>
+    <input type="text" id="search" />
+    <input type="button" id="searchBt" value="搜索" />
+    <input type="button" id="sortBt" value="排序" />
+
+    <table id="tab1" border="1" width="500px">
+        <thead>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Sex</td>
+            <td>Operation</td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2</td>
+                <td>展示</td>
+                <td>女</td>
+                <td><a href="javascript:">删除</a></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>李四</td>
+                <td>女</td>
+                <td><a href="javascript:">删除</a></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>二哥</td>
+                <td>男</td>
+                <td><a href="javascript:">删除</a></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>金额</td>
+                <td>女</td>
+                <td><a href="javascript:">删除</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

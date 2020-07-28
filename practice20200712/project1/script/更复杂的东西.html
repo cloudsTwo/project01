@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+
+    <script>
+        // 函数
+        // 重用
+        function toGreen() {
+            // 变量
+            var id = document.getElementById('div1')
+            id.style.width='300px';
+            id.style.height='300px';
+            id.style.background='green'
+        }
+
+        function toRed() {
+            var id = document.getElementById('div1')
+            id.style.width='200px';
+            id.style.height='200px';
+            id.style.background='red'
+        }
+    </script>
+</head>
+<body>
+
+    <div id="div1"
+         onmouseover="toGreen()"
+        onmouseout="toRed()">
+    </div>
+</body>
+</html>

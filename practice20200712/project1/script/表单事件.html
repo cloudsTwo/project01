@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单事件</title>
+</head>
+<script>
+    window.onload = function () {
+        var form = document.getElementById('form1');
+        
+        form.onsubmit = function () {
+            alert("iiii");
+        }
+    }
+</script>
+<body>
+    <form id="form1" action="http://www.zhinengshe.com/">
+        用户名<input type="text" name="user"/>
+        密码<input type="password" name="pw" />
+        <input type="submit" />
+    </form>
+</body>
+</html>

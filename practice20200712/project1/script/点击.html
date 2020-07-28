@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击</title>
+</head>
+<style>
+ div{
+     padding: 100px;
+ }
+</style>
+<script>
+    // window.onload = function () {
+    //     document.onclick = function () {
+    //         alert(event.clientX + ", " + event.clientY);
+    //     }
+    // }
+</script>
+<body>
+<div style="background-color: gray" onclick="alert(this.style.backgroundColor)">
+    <div style="background-color: green" onclick="alert(this.style.backgroundColor)">
+        <div style="background-color: red" onclick="alert(this.style.backgroundColor)">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

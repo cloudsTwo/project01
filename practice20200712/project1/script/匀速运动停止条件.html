@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>匀速运动停止</title>
+</head>
+<style>
+    #div1{
+        width: 100px;
+        height: 100px;
+        background-color: rebeccapurple;
+        position: absolute;
+        left: 0;
+    }
+
+    #div2{
+        width: 1px;
+        height: 300px;
+        background-color: black;
+        position: absolute;
+        left: 300px;
+    }
+
+    #div3{
+        width: 1px;
+        height: 300px;
+        background-color: black;
+        position: absolute;
+        left: 600px;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var oBt1 = document.getElementById('bt1');
+        var oBt2 = document.getElementById('bt2');
+        var oDiv1 = document.getElementById('div1');
+
+        oBt1.onclick = function () {
+            move(300);
+        }
+
+        oBt2.onclick = function () {
+            move(600);
+        }
+    };
+
+    var timer = null;
+
+    function move(iTarget) {
+        clearInterval(timer);
+
+        var oDiv = document.getElementById('div1');
+
+        var speed = 0;
+
+        timer = setInterval(function () {
+            if(oDiv.offsetLeft > iTarget){
+                speed = -7;
+            }else{
+                speed = 7;
+            }
+
+            if(Math.abs(iTarget - oDiv.offsetLeft) <= 7){
+                clearInterval(timer);
+                oDiv.style.left = iTarget + 'px';
+            }else{
+                oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+            }
+        }, 30)
+    }
+</script>
+<body>
+    <input type="button" id="bt1" value="到300" />
+    <input type="button" id="bt2" value="到600" />
+
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</body>
+</html>

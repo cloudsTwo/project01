@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>myAjax</title>
+<style>
+
+</style>
+<script>
+    window.onload = function () {
+        var oBt = document.getElementById('bt1');
+
+        oBt.onclick = function () {
+			alert('a');
+            // 1.创建Ajax对象
+            var oAjax = new XMLHttpRequest();
+	
+			// 2.连接服务器
+			oAjax.open('GET', 'a.txt?t=' + new Date().getTime(),true);
+			
+			// 3.发送请求
+			oAjax.send();
+			
+			// 4.接收返回
+			oAjax.onreadystatechange = function(){
+				// 读取完成
+				if(oAjax.readyState == 4){
+					
+					// 读取成功
+					if(aAjax.status == 200){
+						alert('成功');
+					}else{
+						alert('失败');
+					}
+				}else{
+					alert('未完成');
+				}
+				
+			};
+        }
+    }
+</script>
+</head>
+<body>
+<input id="bt1" type="button" value="获取">
+</body>
+</html>

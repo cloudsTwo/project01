@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动</title>
+</head>
+<style>
+    #div1{
+        width: 200px;
+        height: 200px;
+        background-color: #2b669a;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var oBt = document.getElementById('bt1');
+        var oDiv = document.getElementById('div1');
+        var timer;
+        
+        oBt.onclick = function () {
+            clearInterval(timer);       // 保证定时器速度
+
+            timer = setInterval(function () {
+                // 确定终止位置
+                if(oDiv.offsetLeft >= 800){
+                    clearInterval(timer);
+                }else{
+                    oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+                }
+            }, 30);
+        };
+    }
+</script>
+<body>
+    <input type="button" value="开始运动" id="bt1"/>
+    <div id="div1">
+
+    </div>
+</body>
+</html>

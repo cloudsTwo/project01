@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>事件捕获</title>
+<style>
+
+</style>
+<script>
+    window.onload = function () {
+        var oBt = document.getElementById('bt1');
+
+        oBt.onclick = function(){
+            alert('a');
+        };
+
+        oBt.setCapture();
+    }
+</script>
+</head>
+<body>
+<input type="button" id="bt1" value="捕获" />
+</body>
+</html>

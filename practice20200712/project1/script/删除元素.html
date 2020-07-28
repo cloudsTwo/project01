@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除DOM</title>
+</head>
+<script>
+    window.onload = function () {
+        var oUl = document.getElementById('ul1');
+        var aBt = oUl.getElementsByTagName('input');
+
+        for(var i = 0; i < aBt.length; i ++){
+            aBt[i].onclick = function () {
+                oUl.removeChild(this.parentNode);
+            };
+        }
+    };
+</script>
+
+<body>
+    <ul id="ul1">
+        <li><input type="button" value="删除"></li>
+        <li><input type="button" value="删除"></li>
+        <li><input type="button" value="删除"></li>
+        <li><input type="button" value="删除"></li>
+        <li><input type="button" value="删除"></li>
+    </ul>
+</body>
+</html>

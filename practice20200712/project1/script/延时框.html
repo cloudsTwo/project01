@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>延时框</title>
+</head>
+<style>
+
+    #div1{
+        width: 100px;
+        height: 100px;
+        background-color: #2b669a;
+    }
+
+   #div2{
+       width: 200px;
+       height: 200px;
+       background-color: black;
+       display: none;
+   }
+</style>
+
+<script>
+    window.onload = function () {
+        var oDiv1 = document.getElementById('div1');
+        var oDiv2 = document.getElementById('div2');
+        var timer = null;
+
+        oDiv1.onmouseover = oDiv2.onmouseover = function () {
+            clearInterval(timer);
+            oDiv2.style.display = 'block';
+        }
+s
+        oDiv1.onmouseout = oDiv2.onmouseout = function () {
+            clearInterval(timer);
+            timer = setTimeout(
+                function () {
+                    oDiv2.style.display = 'none'
+                }, 500)
+        }
+    }
+</script>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

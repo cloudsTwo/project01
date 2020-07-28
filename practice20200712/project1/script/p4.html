@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项</title>
+
+    <script>
+        window.onload = function () {
+
+            var all = document.getElementById('all');
+            var no = document.getElementById('no');
+            var reverse = document.getElementById('reverse');
+            var checksDiv = document.getElementById('div1');
+
+            all.onclick = function () {
+                var checks = checksDiv.getElementsByTagName('input');
+
+                for(i = 0; i < checks.length; i ++){
+                    checks[i].checked = true;
+                }
+            }
+
+            no.onclick = function () {
+                var checks = checksDiv.getElementsByTagName('input');
+
+                for(i = 0; i < checks.length; i ++){
+                    checks[i].checked = false;
+                }
+            }
+
+            reverse.onclick = function () {
+                var checks = checksDiv.getElementsByTagName('input');
+
+                for(i = 0; i < checks.length; i ++){
+                    if(checks[i].checked == true){
+                        checks[i].checked = false;
+                    }else{
+                        checks[i].checked = true;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input id="all" type="button" value="全选" />
+        <input id="no" type="button" value="不选" />
+        <input id="reverse" type="button" value="反选" />
+
+        <div id="div1">
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+        </div>
+    </div>
+</body>
+</html>

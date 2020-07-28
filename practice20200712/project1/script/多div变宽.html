@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多div变宽</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 50px;
+        background-color: #2b669a;
+        margin: 10px;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var divs = document.getElementsByTagName('div');
+
+        for(var i = 0; i < divs.length; i ++){
+            divs[i].timer = null;
+
+            divs[i].onmouseover = function () {
+                move(this, 1000);
+            }
+
+            divs[i].onmouseout = function () {
+                move(this, 100);
+            }
+        }
+    }
+    
+    var timer = null;
+    function move(obj, iTarget) {
+        clearInterval(obj.timer);
+
+        obj.timer = setInterval(function () {
+            var speed = (iTarget - obj.offsetWidth)/ 6;
+
+            speed = speed > 0 ? Math.ceil(speed):Math.floor(speed);
+
+            if(Math.abs(iTarget - obj.offsetWidth) < 6){
+                clearInterval(obj.timer);
+                obj.style.width = iTarget;
+            }else{
+                obj.style.width = obj.offsetWidth + speed + 'px';
+            }
+        }, 30)
+    }
+</script>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

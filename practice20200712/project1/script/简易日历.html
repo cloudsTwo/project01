@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易日历</title>
+
+    <script>
+        window.onload = function () {
+            var div = document.getElementById('tab');
+            var li = tab.getElementsByTagName('li');
+            var txt = tab.getElementsByTagName('div')[0];
+            var info = [
+                '天气变得寒冷……',
+                '快过年了',
+                '初春时候',
+                '四月的花都开了',
+                '春光明媚，万物生长',
+                '重庆有点热',
+                '步入蝉夏，又该吃西瓜了',
+                '你好，八月',
+                '今天的风有麦田的气息',
+                '没有什么重要的日子',
+                '可以穿毛衣了，越来越不想起床',
+                '每天都是下雨，一年即将过去'
+            ]
+
+            for(var i = 0; i < li.length; i ++){
+
+                li[i].index = i;
+
+                li[i].onmouseover = function () {
+
+                    for(var i = 0; i < li.length; i ++){
+                        li[i].className = '';
+                        txt.innerHTML = '';
+                    }
+
+                    this.className = 'active';
+
+                    txt.innerHTML = '<h2>' + (this.index + 1) + '月活动</h2><p>' + info[this.index] + '</p>';
+                }
+            }
+        }
+    </script>
+
+    <style>
+        #tab{
+            margin-left: 30%;
+            background: rgba(31, 211, 207, 0.07);
+            width:570px;
+            height:600px;
+        }
+
+        #tab ul{
+            padding-top:20px;
+            width:500px;
+            height: 350px;
+        }
+
+        #tab .active{
+            background: pink;
+        }
+
+        #tab div{
+            padding-top:10px;
+            background: #c8fbba;
+            width: 80%;
+            text-align: center;
+            margin-left:52px;
+            height: 150px;
+        }
+
+        #tab li{
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin:10px;
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab" class="calendar">
+        <ul>
+            <li class='active'><h2>1</h2><p>JAN</p></li>
+            <li><h2>2</h2><p>FER</p></li>
+            <li><h2>3</h2><p>MAR</p></li>
+            <li><h2>4</h2><p>APR</p></li>
+            <li><h2>5</h2><p>MAY</p></li>
+            <li><h2>6</h2><p>JAN</p></li>
+            <li><h2>7</h2><p>JUL</p></li>
+            <li><h2>8</h2><p>AUG</p></li>
+            <li><h2>9</h2><p>SEP</p></li>
+            <li><h2>10</h2><p>OCT</p></li>
+            <li><h2>11</h2><p>NOV</p></li>
+            <li><h2>12</h2><p>DEC</p></li>
+        </ul>
+
+        <div>
+            <h2>1月活动</h2>
+            <p>寒冷的一天……</p>
+        </div>
+    </div>
+</body>
+</html>

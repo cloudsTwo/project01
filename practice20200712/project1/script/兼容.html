@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兼容问题</title>
+</head>
+<style>
+    #div1{
+        height: 200px;
+        width: 200px;
+        background: yellow;
+    }
+</style>
+
+<script>
+    window.onload = function () {
+        var oDiv = document.getElementById("div1");
+
+        // alert(oDiv.currentStyle.width);
+        alert(getComputedStyle(oDiv, null).background);
+    }
+</script>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

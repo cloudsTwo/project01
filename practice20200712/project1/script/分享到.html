@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分享到</title>
+</head>
+<style>
+    #div1{
+        width: 200px;
+        height: 200px;
+        background-color: #2b669a;
+        position: absolute;
+        left: -200px;
+    }
+
+    #div1 span{
+        background-color: yellow;
+        position: absolute;
+        right: -20px;
+        width: 20px;
+        height: 70px;
+        top: 50px;
+        line-height: 20px;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var oDiv = document.getElementById('div1');
+
+        oDiv.onmouseover = function(){
+            startMove(0);
+        };
+
+        oDiv.onmouseout = function () {
+            startMove(-200);
+        };
+    };
+
+    // ??? 不能作为全局变量？
+    // var oDiv = document.getElementById('div1');
+
+    var timer = null;
+
+    function startMove(sp) {
+        var oDiv = document.getElementById('div1');
+        clearInterval(timer);
+        var speed = 0;
+
+        if(oDiv.offsetLeft > sp){
+            speed = -10;
+        }else{
+            speed = 10;
+        }
+
+        timer = setInterval(function () {
+            if(oDiv.offsetLeft == sp){
+                clearInterval(timer);
+            }else{
+                oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+            }
+        }, 30)
+    }
+
+</script>
+<body>
+    <div id="div1">
+        <span>分享到</span>
+    </div>
+</body>
+</html>

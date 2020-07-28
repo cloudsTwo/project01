@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>运动通用</title>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        margin:20px;
+        background-color: rosybrown;
+        float: left;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var oDivs = document.getElementsByTagName('div');
+
+        for(var i = 0; i < oDivs.length ; i ++){
+            oDivs[i].timer = null;
+            oDivs[i].onmouseover = function () {
+                move(this, 'height', 400);
+            };
+
+            oDivs[i].onmouseout = function () {
+                move(this, 'height', 200);
+            }
+        }
+    };
+
+    function move(obj, name, iTarget) {
+        clearInterval(obj.timer);
+
+        obj.timer = setInterval(function () {
+            var value = 0;
+
+            if(name == 'opacity'){
+                 value = Math.round(parseFloat(getStyle(obj, name))* 100);
+            }else{
+                value = parseInt(getStyle(obj, name));
+            }
+
+            var speed = (iTarget - value)/6;
+
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+            if(value == iTarget){
+                clearInterval(obj.timer);
+
+            }else{
+                if(name == 'opacity'){
+                    obj.style.filter = 'alpha(opacity:' + (value + speed) + ')';
+                    obj.style.opacity = (value + speed)/100;
+                }else{
+                    obj.style[name] = (value + speed) + 'px';
+                }
+            }
+        }, 30)
+    }
+
+    function getStyle(obj, name) {
+        if (obj.currentStyle){
+            return obj.currentStyle[name];
+        }else{
+            return getComputedStyle(obj, false)[name]
+        }
+    }
+</script>
+</head>
+<body>
+    <div id="div1">
+    </div>
+    <div id="div2">
+    </div>
+</body>
+</html>
