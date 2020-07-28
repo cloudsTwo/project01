@@ -1,3 +1,3 @@
 # project01
-This just is a little test.
+This is just a little test.
 learn more.
