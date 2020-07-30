@@ -1,0 +1,373 @@
+JavaScript：
+	网页交互功能
+
+	任何标签都可以加id，甚至于link和html
+	任何标签的属性都可以修改，如link.href
+	html中怎么写,JS中就怎么写
+
+事件
+	文档中或者在浏览器窗口中通过某些动作触发
+
+<script>
+	// 函数
+	// 函数定义
+	function functionName(){
+		// 变量
+		var varName = ----;  // 别名
+	}
+
+	// 函数调用
+	functionName(); 
+</script>
+
+
+getElementById
+	第一个JS兼容性问题
+	document.getElementById()在任何浏览器下均可使用
+
+if
+
+函数传参
+	函数里有部分无法定下来时
+
+function setStyle(name, value){
+	var oDiv = document.getElementById('div1');
+	
+	// 第一种操作属性方法	
+	oDiv.style.width = '400px';
+
+	// 第二种操作属性方法
+	oDiv.style[name] = value;
+}
+
+.方法的地方都可以用[]代替
+
+style加取样式都是在行间
+style行间样式等级高于class
+建议同一元素只使用class或者style
+
+行间事件
+	onclick也是按钮的一个属性
+
+匿名函数
+	未取名字的函数
+	直接使用
+	oBtn.onclick = function (){ }
+
+window.onload
+	页面加载完成时发生
+	window.onload = function (){ }
+
+行为、样式、结构三者分离
+	不加行间样式、行间js事件
+
+getElementsByTagName
+	一次获取一组元素
+	oDiv = getElementsByTagName('div');  // 数组
+	oDiv.length() // 元素个数
+	oDiv[0].style.background = 'red';
+
+
+innerHTML
+	内容
+	可以当做html使用
+	
+ECMAJS JS机器语言转换
+dom 操作html能力
+bom 操作浏览器
+
+强制类型转换
+	parseInt()转化为整数
+	parseFloat()
+NaN 非数字
+NaN和NaN不相等
+isNaN()判断是否为NaN
+
+== 先转换类型再比较
+=== 不转换类型直接比较
+
+作用域
+	局部变量
+	全局变量
+
+闭包
+	子函数可以使用父函数的局部变量
+
+json
+	var json = {a:3, b:4, c:5}
+	json['a']/json.a
+	无json.length
+	// 循环 
+	for(var i in json){}
+
+arguments 可变参、不定参
+	function a(){
+		arguments.length();
+		alert(arguments[0]);
+	}
+	a(1,2,5,4,3,4,2,4,6,9);
+
+css(oDiv, 'width')		获取样式值
+css(oDiv, 'width', 200)	设置样式值
+
+获取非行间样式兼容问题
+IE获取非行间样式    oDiv.currentStyle.width
+其他浏览器	getComputedStyle(oDiv, null).width
+
+IE浏览器需要html文件为英文名，否则为404
+
+数组
+	length:既可以获取，也可以设置
+	push:尾部添加
+	pop:尾部删除
+	shift:头部删除
+	unshift:头部添加
+
+	splice(起点，长度):从起点开始删除任意长度东西
+	splice(起点，长度，元素……):从起点开始删除相应长度成员，并在起点插入元素	
+	先删除再添加
+	
+	a.concat(b) 连接两个数组 	a = a.concat(b);
+	join()连接符	arr = arr.join('-');
+	sort()排序		只能对字符串进行排序
+	
+定时器
+	setInterval(需要执行操作，间隔) 无限执行
+	setTimeout(*, *) 只执行一次
+	
+	停止定时器
+	clearInterval
+	clearTimeout
+
+offsetLeft
+	左边距
+
+DOM：操作页面的功能
+	子结点：只算第一层
+	childNodes[]；children[]：只包括元素，不包括文本，优于childNodes
+	nodeType = 1 元素结点 ；3 文本结点
+
+	父节点：parentNode
+	offsetParent:定位父级
+	CSS：绝对定位元素，根据最近定位父级
+
+	firstChild IE6-8；firstElementChild 其它浏览器
+	操作元素属性：setAttribute(名称，值）
+		        getAttribute(名称）
+	
+用className获取元素
+	function getByClass(oParent, sClass){
+		var aEle = oParent.getElementsByTagName('*');
+		var aResult = [];
+
+		for(var i = 0; i < aEle.length; i ++){
+			if(aEle[i].className == sClass){
+				aResult.push(aEle[i]);
+			}
+		}
+		
+		return aResult
+	}
+		
+
+创建DOM
+	var el = document.createElement(元素)； // 创建
+	div.appendChild(el); //插入
+
+插入DOM
+	appendChild(子节点） 末尾插入
+	insertBefore(子节点，在谁之前） 自由插入
+
+删除元素
+	el.removeChild(需删除元素)
+
+文档碎片
+	减少渲染次数，提高插入DOM元素性能
+	var frag = document.createDocumentFragment();
+	基本淘汰
+
+表格应用
+	tBodies 获得table所有的tBody
+	rows 获得tr
+	cells 获得td
+
+search(内容)    字符串范围搜索
+split()
+
+表单事件
+	onsubmit 提交时发生
+	onreset 重置时发生
+
+math.ceil(小数)向上取整
+math.floor(小数)向下取整
+
+多物体同时运动
+	多定时器
+	定时器作为物体属性
+	多物体运动框架中所有东西都不能共用
+
+事件（event）对象
+	用来获取事件的详细信息：鼠标位置，键盘按键
+	event.clientX;event.clientY：鼠标位置（火狐浏览器不兼容）
+	用到时一定要加上scroll
+
+事件流
+	事件冒泡：事件顺着层级往父级向上传递
+	event.cancelBubble:取消冒泡
+
+offset:偏移 包括滚动条、padding、border等，offsetParent\offsetWidth\offsetTop\offsetLeft
+scroll:滚动，包括这个元素没显示出来的实际宽度，包括padding，不包括滚动条、border
+client:元素本身的可视内容，不包括overflow被折叠起来的部分，不包括滚动条、border，包括padding
+https://blog.csdn.net/Calla_Lj/article/details/90269626
+
+onmousedown 鼠标按下
+onmousemove 鼠标移动
+onmousetop 鼠标抬起
+onkeydown 键盘按键按下	keyCode：ASCLL码
+onkeyup 键盘按键抬起	ctrlKey\shiftKey\altKey
+
+默认行为
+	浏览器自带
+	阻止自带菜单 document.oncontextmenu = function(){return false;}
+	
+拖拽
+	onmousedown; onmousemove; onmouseup
+火狐下空div拖拽bug
+	return false;
+
+
+事件绑定
+	attachEvent(事件名，函数）；detachEvent(..):只在IE下作用，不会覆盖样式
+	addEventListener(事件，函数，false); removeEventListener(..)：火狐、谷歌使用，事件名不带on
+
+事件捕获
+	setCapture():（IE专用）将所有事件集中到一个元素处理，只能在谷歌下使用
+	releaseCaptrue():取消捕获
+		
+Ajax
+	从服务器读东西，异步操作
+	无刷新数据读取
+	读取静态txt文件
+	阻止缓存，刷新url： 'a.txt?t=' + new Date().getTime() 
+	
+ajax程序
+	1.创建ajax对象  var oAjax = new XMLHttpRequest();
+	2.连接到服务器  oAjax.open('GET/POST',文件名,同步/异步传输)   : oAjax.open('GET', 'a.txt?t=' + new Date().getTime()，true)
+	3.发送服务器请求 oAjax.send()
+	4.接收返回值 
+	oAjax.onreadystatechange = function(){
+
+		if(oAjax.readyState == 4){	// 读取完成，不确定成功或失败
+				
+		readyState==// 0（未初始化）还没有调用open方法
+			// 1 (载入）已调用send()方法，正在发送请求
+			// 2（载入完成）send()方法完成，已收到全部响应内容
+			// 3（解析）正在解析响应内容
+			// 4（完成）响应内容解析完成，可在客户端调用
+			 
+			// 读取成功
+			if(oAjax.status == 200){
+				alert(oAjax.responseText);
+				// responseText从服务器发送回来的文本
+			}
+		}
+	}
+	Ajax以事件存在，服务器信息返回时，事件调用
+
+
+同步：事情一件一件进行
+异步：多个事情同时进行
+
+全局变量属于window属性
+	变量未定义报错
+	属性未定义undefined
+	
+HTTP请求方法
+	Get:将数据放入网址传递，容量小，不适合传递大数据；安全性差；有缓存 格式：名字 = 值
+	Post:不通过网址传递，容量大（2G）；无缓存
+	Get用于获取数据(如浏览帖子)，Post用于上传数据(用户注册)
+
+	
+eval（str）将语句识别成js可以识别的内容
+
+面向对象
+	只关注对象提供功能，而不关注其实现细节
+	黑盒子
+	特点：
+		抽象：获得问题主要特征
+		封装：
+		继承：继承父类的一些方法和属性并可以扩展
+	变量：自由；属性：属于一个对象
+	函数：自由；方法：属于对象
+
+	this:当前方法的对象
+	Object:没有功能
+	构造函数：构造对象，加属性
+	原型：一次给一组元素（类）加方法	Array.prototype.sum = function(){}
+	混合方式：构造函数加属性，原型加方法
+	类：首字母大写
+	
+json对象--------单例模式
+	简单，不适合多个对象，适合如ajax对象。
+
+继承
+	继承父级的属性和方法
+	call()改变函数执行中的this
+	function B(){//继承A属性   A.call(this); }
+	// B.prototype = A.prototype;  // 引用
+	//原型继承 for(var i in A.prototype){B.prototype[i] = A.prototype[i]; }
+
+系统对象
+	宿主对象：JS运行环境（由浏览器提供的对象）如BOM\DOM
+	本地对象（非静态对象）如Object等。
+	内置对象（静态对象）：不能实例化，只能用类上方法。如Global、Math。
+	
+BOM
+	window.open('about:blank', '_blank/_self')	打开一个窗口
+	window.document
+	window.navigator.userAgent   当前浏览器版本信息
+	window.location	当前页面地址
+	document.documentElement.clientHeight	可视区高度
+	scrollTop	滚动距离
+	onscroll 	页面滚动事件	onresize	窗口改变大小时发生
+	confirm	选择框，返回bool
+	prompt	输入框，返回输入字符串或null
+
+document.write	先清空再写
+
+cookie
+	页面用来保存信息
+	同一个网站中所有页面共享一套cookie，数量大小有限，过期时间
+	document.cookie
+
+正则表达式
+	表达某种模式
+	JS风格：var re = new RegExp('a' , i)-------------perl风格：var re = /a/ i
+	i 忽略大小写
+
+	转义：\d数字   [0-9] ；\D	[^0-9]
+	\w 英文、数字、下划线  [0-9a-z_];  \W	[^0-9a-z_]
+	\s 空白字符;  \S	非空白字符
+	 .任意字符       g 找到全部
+	
+	量词/个数： {n}	正好出现n次
+	{n,m}	最少n次，最多m次
+	{n,}	最少n次，最多不限
+	?可有可无
+	+ 若干  ----{1, }		|或
+
+	match	把所有匹配东西提取出来
+	提取数字	var re = /\d+/g；str.match(re);
+	str.replace(/a|b/g, '0');
+	元字符[]	其中任选一个可	[abc]:a/b/c    [a-z]/[0-9]:找出所有字母或数字
+	[^a-z0-9]:除英文和数字外的其他字符
+	test 字符串一部分符合要求就认为全部符合要求
+
+	^字符串开头
+	$字符串结尾
+
+
+	
+
+
+
