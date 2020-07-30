@@ -1,0 +1,15 @@
+cloudsTwo 18723432314@163.com 990811Cyl
+git init    在想要记录内容更改的文件夹中，保存文件夹更改
+git add hello.txt	将文件放入仓库缓存区
+git commit -m "说明"       将缓存区所有文件正式提交到仓库
+git remote add origin git@github.com:cloudsNo.2/Gittest.git 联系远程库
+git log	查看版本情况
+git reset --hard HEAD^    从当前版本回退到上一个版本
+git reflog	     每次命令记录
+git pull origin master --allow-unrelated-histories     把本地仓库的变化连接到远程仓库主分支
+git push origin master      将仓库区内容推送到远程仓库Github上
+
+VSCode创建Vue项目	vue init webpack vuedemo --offline
+Vant UI安装命令	cnpm i vant -S
+less安装命令	cnpm install less less-loader --save
+
