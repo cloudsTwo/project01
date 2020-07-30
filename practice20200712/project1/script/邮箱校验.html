@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮箱</title>
+    <script>
+        window.onload = function () {
+            var oTxt = document.getElementById('txt1');
+            var oBt = document.getElementById('bt1');
+
+            oBt.onclick = function () {
+                var re =/^\w+@[a-z0-9]+\.[a-z]+$/i;
+
+                if(re.test(oTxt.value)){
+                    alert('合法邮箱');
+                }else {
+                    alert('写错了');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="txt1" />
+    <input type="button" id="bt1" value="校验" />
+</body>
+</html>

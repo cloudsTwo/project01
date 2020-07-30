@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>面向对象</title>
+<script>
+function createPerson(name, qq) {       // 构造函数
+
+    //默认行为
+    // var this = new Object();
+    this.name = name;
+    this.qq = qq;
+
+    this.showName = function () {
+        alert('my name is ' + obj.name);
+    };
+
+    this.showQQ = function () {
+        alert('my qq is ' + obj.qq);
+    };
+
+    // return obj;
+}
+
+var obj = new createPerson('hh', '12345');
+obj.showName();
+obj.showQQ();
+</script>
+</head>
+<body>
+
+</body>
+</html>

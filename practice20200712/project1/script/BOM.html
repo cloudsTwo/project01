@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOM</title>
+<script>
+    window.onload = function () {
+        var oTxt = document.getElementById('txt1');
+        var oBt = document.getElementById('bt1');
+
+        oBt.onclick = function () {
+            var oNewWin = window.open('about:blank');
+
+            oNewWin.document.write(oTxt.value);
+        };
+    }
+</script>
+</head>
+<body>
+<textarea id="txt1" cols="30" rows="10"></textarea><br>
+<input id="bt1" type="button" value="运行" />
+</body>
+</html>

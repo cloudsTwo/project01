@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>面向对象选项卡</title>
+<style>
+#div1{
+    background-color: white;
+}
+
+    #div1 input.active{
+        background-color: red;
+    }
+
+    #div1 div{
+        width: 200px;
+        height: 200px;
+        background-color: whitesmoke;
+        display: none;
+    }
+</style>
+<script>
+window.onload = function () {
+    new init('div1');
+};
+
+function init(id) {
+    // 此时this为当前操作函数
+    // 将变量修改为属性
+    var _this = this;
+    var oDiv = document.getElementById(id);
+    this.aBt = oDiv.getElementsByTagName('input');
+    this.aDiv = oDiv.getElementsByTagName('div');
+
+    for(var i = 0; i < this.aBt.length; i ++){
+        this.aBt[i].index = i;
+
+        // 此时this为按钮
+        this.aBt[i].onclick = function () {
+            _this.click(this);
+        };
+    }
+};
+
+init.prototype.click = function (_this) {
+        for(var j = 0; j < this.aBt.length; j ++){
+            this.aDiv[j].style.display = 'none';
+            this.aBt[j].className = '';
+        }
+
+        this.aDiv[_this.index].style.display = 'block';
+        _this.className = 'active';
+}
+</script>
+</head>
+<body>
+<div id="div1">
+    <input type="button" value="aaa"/>
+    <input type="button" value="bbb"/>
+    <input type="button" value="ccc"/>
+
+    <div style="display: block">aaaa</div>
+    <div>bbbb</div>
+    <div>ccc</div>
+</div>
+</body>
+</html>
